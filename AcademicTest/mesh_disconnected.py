@@ -89,7 +89,7 @@ for surface in surfaces:
     """
     gmsh.model.addPhysicalGroup(surface[0], [surface[1]])
         
-lc = 0.03 # 0.01
+lc = 0.010 # 0.01
 """
 gmsh.model.mesh.field.add("Constant", 1)
 gmsh.model.mesh.field.setNumbers(1, "VolumesList", hole_tags)
@@ -101,7 +101,7 @@ gmsh.model.mesh.field.setAsBackgroundMesh(1)
 gmsh.model.occ.synchronize()
 
 
-#gmsh.option.setNumber("Mesh.MeshSizeMin", 0.005)
+gmsh.option.setNumber("Mesh.MeshSizeMin", 0.005)
 gmsh.option.setNumber("Mesh.MeshSizeMax", lc)
 gmsh.option.setNumber("Mesh.Algorithm", 6)
 gmsh.option.setNumber("Mesh.Algorithm3D", 10)#10
@@ -109,6 +109,8 @@ gmsh.option.setNumber("Mesh.RandomFactor", 1e-11)
 gmsh.option.setNumber("Mesh.RandomFactor3D", 1e-13)
 gmsh.option.setNumber("Mesh.Optimize", 1)
 gmsh.option.setNumber("Mesh.OptimizeNetgen", 0)
+# gmsh.option.setNumber("Mesh.CharacteristicLengthMin", 1)
+# gmsh.option.setNumber("Mesh.CharacteristicLengthMax", 1)
 gmsh.model.mesh.generate(3)
 
 
